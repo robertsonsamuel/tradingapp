@@ -1,3 +1,4 @@
+/*global $:false , console:false*/
 'use strict';
 
 $(document).ready(init);
@@ -22,7 +23,7 @@ function addARoom (){
     div.attr('id', data);
     $('.rooms').append(div).removeClass('hide');  
   });
-};
+}
 
 function createRoom (room){
   var header = $(document.createElement('h3'));
@@ -41,7 +42,7 @@ function createRoom (room){
 
 function eventRouter (e){
   if ($(e.target).hasClass('room')){
-    targetRoom = $(e.target).parent().attr('id')
+    targetRoom = $(e.target).parent().attr('id');
     openSesame();
   }
   if ($(e.target).hasClass('killRoom')){

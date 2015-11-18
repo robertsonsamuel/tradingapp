@@ -1,3 +1,4 @@
+/*global $:false , console:false*/
 'use strict';
 
 $(document).ready(init);
@@ -22,11 +23,19 @@ function toTrade (e) {
     }).done(function (data) {
       console.log(data);
       $(e.target).closest('.item').addClass('disabled');
+      addRow(data);
+
     });
   }
-};
+}
 
 
+function addRow(transaction) {
+  console.log('appending new table');
+  var trSample = $('.toClone').clone();
+  trSample.attr('id', transaction).removeClass('hide toClone');
+  $('#offerTable').append(trSample);
+}
 
 
 function addItem () {
@@ -36,17 +45,14 @@ function addItem () {
   $itemDisp.attr('id', '').removeClass('hide');
   $itemDisp.find('.caption').text(item.name);
 
-
-
   $.ajax({
-    url:'/profile/newitem',
-    type:'POST',
-    data:item
+      url:'/profile/newitem',
+      type:'POST',
+      data:item
   }).done(function(data) {
-
-    console.log(data);
-  $itemDisp.attr('id', data);  
-  $('#ownedItems').append($itemDisp);   
+      console.log(data);
+    $itemDisp.attr('id', data);  
+    $('#ownedItems').append($itemDisp);   
   });
   //inside done
 

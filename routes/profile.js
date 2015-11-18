@@ -31,8 +31,8 @@ router.put('/newtrade' , function (req ,res) {
   var trans = new Transaction({forTrade: req.body._id});
   trans.save(function(err , transaction) {
     if(err) return console.log(err);
-    res.send(transaction._id);
-  });
+    res.send(transaction);
+  }).populate('forTrade');
   
 
 });

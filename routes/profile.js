@@ -12,7 +12,6 @@ router.get('/', function(req, res) {
   });
 });
 
-
 router.post('/newitem' , function (req ,res) {
   var newItem = new Item(req.body);
   newItem.save(function  (err, item) {
@@ -23,16 +22,18 @@ router.post('/newitem' , function (req ,res) {
 
 
 router.put('/newtrade' , function (req ,res) {
-  var flag1;
   Item.findByIdAndUpdate(req.body._id, {trade:true}, function(err, olditem) {
     if(err) return console.log(err);
-    flag1 = olditem;
+    console.log('updated');
   });
   var trans = new Transaction({forTrade: req.body._id});
-  trans.save(function(err , transaction) {
+  trans.save(function(err , transaction){
     if(err) return console.log(err);
-    res.send(transaction);
-  }).populate('forTrade');
+    transaction.populate('forTrade', function (err, obj){
+      if (err) return console.log(err);
+      res.send(obj);
+    })
+  });
   
 
 });

@@ -1,15 +1,11 @@
-/*global $:false , console:false*/
 'use strict';
 
 $(document).ready(init);
 
 function init() {
-  
-$('#addItem').click(addItem);
-$('#ownedItems').on('click','.item',toTrade);
-
+  $('#addItem').click(addItem);
+  $('#ownedItems').on('click','.item',toTrade);
 }
-
 
 function toTrade (e) {
   if($(e.target).closest('.item').hasClass('disabled')) return;
@@ -20,8 +16,7 @@ function toTrade (e) {
       url:'/profile/newtrade',
       type:'PUT',
       data:{_id: id}
-    }).done(function (data) {
-      console.log(data);
+    }).done(function (data){
       $(e.target).closest('.item').addClass('disabled');
       addRow(data);
 
@@ -29,14 +24,13 @@ function toTrade (e) {
   }
 }
 
-
 function addRow(transaction) {
-  console.log('appending new table');
+  console.log(transaction);
   var trSample = $('.toClone').clone();
-  trSample.attr('id', transaction).removeClass('hide toClone');
+  trSample.attr('id', transaction._id).removeClass('hide toClone');
+  trSample.children('#currentItem').text(transaction.forTrade.name);
   $('#offerTable').append(trSample);
 }
-
 
 function addItem () {
   var item = {};
@@ -55,5 +49,4 @@ function addItem () {
     $('#ownedItems').append($itemDisp);   
   });
   //inside done
-
 }

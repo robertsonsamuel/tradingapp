@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/inventoryManager')
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/trading')
 
 app.set('view engine', 'jade');
 

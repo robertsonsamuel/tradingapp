@@ -1,0 +1,53 @@
+body {
+  background-color: lightslategray;
+}
+#roomInput{
+  width: 95%;
+  display: inline-block;
+}
+label{
+  display: block;
+}
+h3{
+  display: inline-block;
+  text-align: center;
+  width: 95%;
+  margin: 0;
+  height: 100%;
+}
+h2{
+  text-align: center;
+}
+.room{
+  padding:2vw;
+}
+button.killRoom{
+  margin-bottom: 0.7vw;
+}
+.roomContainer{
+  background-color: beige;
+  margin-top: 2vw;
+}
+h4{
+  display: inline-block;
+}
+#itemModal{
+  top:10%;
+}
+.itemInput, .itemValue, #sel1{
+  display: inline-block;
+  width: 25%;
+}
+.addItem{
+  margin-right: 5vw;
+}
+.dropdownLabel{
+  position: relative;
+  left: 73%;
+}
+th, td{
+  text-align: center;
+}
+.forClone{
+  display: none;
+}

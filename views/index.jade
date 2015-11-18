@@ -1,0 +1,62 @@
+doctype html
+html(lang="en")
+  head
+    title Home
+    link(href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet")
+    link(href="css/style.css" rel="stylesheet")
+  body
+    #itemModal.modal.fade(role="dialog")
+      .modal-dialog.modal-lg
+        .modal-content
+          .modal-header
+            h4.modal-title Items in the Room
+            button.close(data-dismiss="modal") &times; 
+          .modal-body
+            .form-group
+              label.dropdownLabel(for="sel1") Currently Available Items:
+              input.itemInput.form-control(type="text" placeholder="Input Item")
+              input.itemValue.form-control(type="number" placeholder="Input Item Value")
+              button.addItem.btn.btn-success Add to Room
+              select(class="form-control" id="sel1")
+                option Select One
+                option.default None Available Currently
+            table.table.table-hover
+              tbody
+                tr
+                  th Item
+                  th Value
+                  th Edit
+                  th Move
+                  th Delete
+                tr.forClone
+                  td.item
+                  td.value
+                  td
+                    button.edit.btn.btn-info
+                      span.edit.glyphicon.glyphicon-edit
+                  td
+                    button.move.btn.btn-warning
+                      span.move.glyphicon.glyphicon-move
+                  td
+                    button.del.btn.btn-danger
+                      span.del.glyphicon.glyphicon-trash
+          .modal-footer
+            button.btn.btn-default(data-dismiss="modal") Close Room
+    .container
+      br
+      .jumbotron
+        h1 Inventory in Your Rooms
+      .form-group
+        label(for="roomInput") Add a Room: 
+        input#roomInput.form-control(type="text")
+        button.addRoom.btn.btn-success Add
+      .rooms.hide
+        h2 Your Rooms
+        each element in rooms
+          .roomContainer(id="#{element._id}")
+            h3.room= element.roomName
+            button.killRoom.btn.btn-danger
+              span.killRoom.glyphicon.glyphicon-remove
+    script(src='bower_components/jquery/dist/jquery.min.js')
+    script(src="bower_components/bootstrap/js/modal.js")
+    script(src='js/main.js')

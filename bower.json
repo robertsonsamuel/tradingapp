@@ -1,0 +1,22 @@
+{
+  "name": "inventoryManager",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Edward Song"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5"
+  }
+}

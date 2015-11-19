@@ -11,7 +11,7 @@ function login(e) {
   var username = $('#username').val();
   var pw = $('#pw').val();
 
-  $.post('/login', {username: username, password: pw})
+  $.post('/auth/login', {username: username, password: pw})
   .done(function(data){
     window.location.replace('/members');
   })

@@ -23,6 +23,7 @@
     "express-session": "^1.12.1",
     "i": "^0.3.3",
     "jade": "^1.11.0",
+    "jwt-simple": "^0.3.1",
     "mongoose": "^4.2.5",
     "morgan": "^1.6.1",
     "passport": "^0.3.2",

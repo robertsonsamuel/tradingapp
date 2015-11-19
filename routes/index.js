@@ -11,16 +11,4 @@ router.get('/', (req, res) => {
   });
 });
 
-
-// router.delete('/:id', (req, res) => {
-//   console.log('fired');
-//   roomModel.findByIdAndRemove(req.params.id, function(err, room) {
-//     if (err){
-//       console.log(err);
-//     }else{
-//       res.send('deleted');
-//     }
-//   });
-// });
-
 module.exports = router;

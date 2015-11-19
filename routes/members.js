@@ -4,24 +4,19 @@ let express = require('express');
 let router = express.Router();
 let Item = require('../models/itemModel');
 let app = express();
+let authMiddleware = require('../config/auth');
+let jwt = require('jwt-simple');
 
-
-
-router.get('/', (req, res) => {
+router.get('/', authMiddleware, (req, res) => {
+  var token = req.cookies.token;
+   var payload = jwt.decode(token, 'secret');
+   var userId = payload._id;
+   console.log(userId);
   Item.find({trade:true}, function  (err, items) {
     if(err) return console.log(err);
     res.render('main', {items: items});   
   });
 });
-
-router.post('/login', function(req, res) {
-  User.authenticate(req.body, function(err, user){
-    res.cookie('username', user.username);
-    res.cookie('userId', user._id.toString());
-    res.status(err ? 400 : 200).send(err || user);
-  });
-});
-
 
 // router.put('/', function(req, res) {
 //   Room.findById(req.body.roomId, function(err, room){

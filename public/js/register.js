@@ -16,9 +16,9 @@ function register(e) {
     $('#pw2').val('');
     swal('Error:', 'Passwords do not match.', 'error');
   } else {
-    $.post('/register', {username: username, password: pw1})
+    $.post('/auth/register', {username: username, password: pw1})
     .done(function(data){
-      window.location.replace('/login');
+      window.location.replace('/auth/login');
     })
     .fail(function(err){
       console.log(err);

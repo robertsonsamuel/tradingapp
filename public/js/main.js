@@ -7,8 +7,7 @@ function init() {
 }
 
 function logout() {
-  $.post('/users/logout')
-  .done(function(){
+  $.get('/auth/logout').done(function (data){
     window.location.replace('/');
   });
 }

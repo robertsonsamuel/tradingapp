@@ -3,11 +3,22 @@
 let express = require('express');
 let router = express.Router();
 let Item = require('../models/itemModel');
+let app = express();
+
+
 
 router.get('/', (req, res) => {
   Item.find({trade:true}, function  (err, items) {
     if(err) return console.log(err);
     res.render('main', {items: items});   
+  });
+});
+
+router.post('/login', function(req, res) {
+  User.authenticate(req.body, function(err, user){
+    res.cookie('username', user.username);
+    res.cookie('userId', user._id.toString());
+    res.status(err ? 400 : 200).send(err || user);
   });
 });
 

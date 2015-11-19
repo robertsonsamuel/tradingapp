@@ -1,18 +1,10 @@
 extends ./layout
 
-block content
+block content            
   .container
     br
     .jumbotron
       h1 Items for Trade!
-    .form-group
-      label(for="roomInput") Add a Room: 
-      input#roomInput.form-control(type="text")
-      button.addRoom.btn.btn-success Add
-    .rooms.hide
-      h2 Your Rooms
-      each element in rooms
-        .roomContainer(id="#{element._id}")
-          h3.room= element.roomName
-          button.killRoom.btn.btn-danger
-            span.killRoom.glyphicon.glyphicon-remove
+    each element in items
+      .itemContainer(id="#{element._id}")
+        h3.name= element.name

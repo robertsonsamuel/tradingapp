@@ -48,6 +48,16 @@ block content
                     button#declineOffer Decline
                   td#cancelTrans 
                     button Cancel
+                each element in trans
+                  tr(id="#{element._id}")
+                    td#currentItem= element.name
+                    td#offer= element.offered
+                    td 
+                      button#acceptOffer Accept
+                    td 
+                      button#declineOffer Decline
+                    td#cancelTrans 
+                      button Cancel
 
   #itemModal.modal.fade(role="dialog")
       .modal-dialog.modal-lg

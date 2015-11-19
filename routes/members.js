@@ -3,15 +3,9 @@
 let express = require('express');
 let router = express.Router();
 
-// let Room = require('../models/roomModel');
-// let Item = require('../models/itemModel');
-
-// router.get('/:id', (req, res) => {
-//   Room.find({_id: req.params.id}, function(err, rooms){
-//     res.status(err ? 400 : 200).send(err || rooms);
-//   }).populate('items');
-
-// });
+router.get('/', (req, res) => {
+  res.render('main', {rooms: {}});
+});
 
 
 // router.put('/', function(req, res) {

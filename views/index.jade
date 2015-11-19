@@ -1,42 +1,18 @@
-doctype html
-html(lang="en")
-  head
-    title Home
-    link(href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet")
-    link(href="css/style.css" rel="stylesheet")
-  body
-    #itemModal.modal.fade(role="dialog")
-      .modal-dialog.modal-lg
-        .modal-content
-          .modal-header
-            h4.modal-title Items in the Room
-            button.close(data-dismiss="modal") &times; 
-          .modal-body
-            .form-group
-              label.dropdownLabel(for="sel1") Currently Available Items:
-              button.addItem.btn.btn-success Offer
-              select(class="form-control" id="sel1")
-                option Select One
-                option.default None Available Currently
-                option.basketball Basketball
-                option.baseball Baseball
+extends ./layout
 
-            
-    .container
-      br
-      .jumbotron
-        h1 Items for Trade!
-      .form-group
-        label(for="roomInput") Add a Room: 
-        input#roomInput.form-control(type="text")
-        button.addRoom.btn.btn-success Add
-      .rooms.hide
-        h2 Your Rooms
-        each element in rooms
-          .roomContainer(id="#{element._id}")
-            h3.room= element.roomName
-            button.killRoom.btn.btn-danger
-              span.killRoom.glyphicon.glyphicon-remove
-    script(src='bower_components/jquery/dist/jquery.min.js')
-    script(src="bower_components/bootstrap/js/modal.js")
-    script(src='js/main.js')
+block content
+  .container
+    br
+    .jumbotron
+      h1 Items for Trade!
+    .form-group
+      label(for="roomInput") Add a Room: 
+      input#roomInput.form-control(type="text")
+      button.addRoom.btn.btn-success Add
+    .rooms.hide
+      h2 Your Rooms
+      each element in rooms
+        .roomContainer(id="#{element._id}")
+          h3.room= element.roomName
+          button.killRoom.btn.btn-danger
+            span.killRoom.glyphicon.glyphicon-remove

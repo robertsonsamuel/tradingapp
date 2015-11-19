@@ -8,16 +8,6 @@ body {
 label{
   display: block;
 }
-h3{
-  display: inline-block;
-  text-align: center;
-  width: 95%;
-  margin: 0;
-  height: 100%;
-}
-h2{
-  text-align: center;
-}
 .room{
   padding:2vw;
 }

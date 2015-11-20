@@ -18,21 +18,24 @@ function getUser(req){
 
 router.get('/', authMiddleware, function(req, res) {
   var userId = getUser(req);
-  console.log(userId);
   User.findById(userId, function  (err , user) {
     if (err) return console.log(err);
-    console.log(user);
+
     if (user.items.length){
       var opts = [{path:'pending'},{path:'items'}];
       User.populate(user, opts, function (err, obj){
-        console.log(obj);
         if (err) return console.log(err);
-        res.render('profile', {items:obj.items , trans:{}});
-        });
+
+        Transaction.populate(obj.pending,'forTrade', function (err, trade){
+          console.log(obj.pending);
+          res.render('profile', {items:obj.items , trans:obj.pending});
+        })
+      });
+
     }else{
     res.render('profile', {items:{} , trans:{}});
     }
-    });
+  });
 });
 
 router.post('/newitem' , function (req ,res) {

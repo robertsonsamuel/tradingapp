@@ -50,7 +50,7 @@ block content
                     button Cancel
                 each element in trans
                   tr(id="#{element._id}")
-                    td#currentItem= element.name
+                    td#currentItem= element.forTrade.name
                     td#offer= element.offered
                     td 
                       button#acceptOffer Accept

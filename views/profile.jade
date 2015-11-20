@@ -6,17 +6,17 @@ block content
   .container-fluid.well.span6
     .row-fluid
       .span2
-        img.img-circle(src='https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm')
+        img.img-circle(src='https://lh3.googleusercontent.com/-_6lvqJXhJnk/AAAAAAAAAAI/AAAAAAAAAAA/OMUSbvy2l6Q/photo.jpg')
 
       .span8
-        h3#userName User Name
+        h3#userName= user
         button.btn.btn-success(data-toggle="modal" data-target="#itemModal") Add Item
         h3 Item's Owned
         .row
           #ownedItems
             #sampleItem.col-sm-6.col-md-6.hide.item.text-center
               .thumbnail
-                img(src='http://ep.yimg.com/ay/yhst-83547458988818/travelocity-gnome-mexico-16.jpg')
+                img(src='http://hydra-media.cursecdn.com/minecraft-de.gamepedia.com/c/c9/Netherreaktorkern.png?version=95b085a0d60bffa2db6cf81299e561a2')
                 .caption Sample
               button#cancel Cancel
             each element in items
@@ -25,7 +25,7 @@ block content
                 - divClass = "disabled"
               .col-sm-6.col-md-6.item.text-center(id="#{element._id}" class=divClass)
                 .thumbnail
-                  img(src='http://ep.yimg.com/ay/yhst-83547458988818/travelocity-gnome-mexico-16.jpg')
+                  img(src='http://hydra-media.cursecdn.com/minecraft-de.gamepedia.com/c/c9/Netherreaktorkern.png?version=95b085a0d60bffa2db6cf81299e561a2')
                   .caption= element.name
                 button#cancel Cancel
         br

@@ -7,6 +7,7 @@ function init() {
   $('#ownedItems').on('click','.thumbnail',toTrade);
   $('#ownedItems').on('click','#cancel',cancel);
   $('#acceptOffer').click(acceptOffer);
+  $('#declineOffer').click(decline);
 }
 
 function toTrade (e) {
@@ -48,7 +49,7 @@ function acceptOffer (e) {
   console.log(transId);
   $.post('/transaction/accept', {_id:transId}).done(function (data){
     console.log(data);
-    window.location.reload();
+    $(e.target).closest('tr').remove();
   })
 }
 
@@ -56,5 +57,13 @@ function cancel (e) {
   var id = $(e.target).closest('.item').attr('id');
   $.post('/transaction/cancel', {_id:id}).done(function (data){
     $(e.target).closest('.item').removeClass('disabled');
+  })
+}
+
+function decline (e){
+  var transId = $(e.target).closest('tr').attr('id');
+  $.post('/transaction/decline', {_id:transId}).done(function (data){
+    console.log(data);
+    $(e.target).closest('tr').remove();
   })
 }

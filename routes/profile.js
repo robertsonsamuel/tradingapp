@@ -29,15 +29,15 @@ router.get('/', authMiddleware, function(req, res) {
         if (user.pending.length){
           Transaction.populate(obj.pending,'forTrade offered', function (err, trade){
             console.log(trade);
-            res.render('profile', {items:obj.items , trans:obj.pending});
+            res.render('profile', {items:obj.items , trans:obj.pending, user:user.username});
           });
         }else{
-          res.render('profile', {items:obj.items, trans:{}});
+          res.render('profile', {items:obj.items, trans:{}, user:user.username});
         }
       });
 
     }else{
-    res.render('profile', {items:{} , trans:{}});
+    res.render('profile', {items:{} , trans:{}, user:user.username});
     }
   });
 });

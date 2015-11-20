@@ -25,6 +25,7 @@ app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
 app.use('/members', require('./routes/members'));
 app.use('/profile', require('./routes/profile'));
+app.use('/transaction', require('./routes/transaction'));
 
 // 404 HANDLER
 app.use(function(req, res){

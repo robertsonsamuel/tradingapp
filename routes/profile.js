@@ -25,11 +25,15 @@ router.get('/', authMiddleware, function(req, res) {
       var opts = [{path:'pending'},{path:'items'}];
       User.populate(user, opts, function (err, obj){
         if (err) return console.log(err);
-
-        Transaction.populate(obj.pending,'forTrade', function (err, trade){
-          console.log(obj.pending);
-          res.render('profile', {items:obj.items , trans:obj.pending});
-        })
+        console.log('user',obj);
+        if (user.pending.length){
+          Transaction.populate(obj.pending,'forTrade offered', function (err, trade){
+            console.log(trade);
+            res.render('profile', {items:obj.items , trans:obj.pending});
+          });
+        }else{
+          res.render('profile', {items:obj.items, trans:{}});
+        }
       });
 
     }else{
@@ -58,23 +62,8 @@ router.put('/newtrade' , function (req ,res) {
   Item.findByIdAndUpdate(req.body._id, {trade:true}, function(err, olditem) {
     if(err) return console.log(err);
     console.log('updated');
+    res.send();
   });
-  var trans = new Transaction({forTrade: req.body._id});
-  trans.save(function(err , transaction){
-    if(err) return console.log(err);
-    User.findById(userId, function (err, current){
-      if (err) return console.log(err);
-      current.pending.push(transaction._id);
-      current.save(function (err){
-        if (err) return console.log(err);
-      });
-    });
-    transaction.populate('forTrade', function (err, obj){
-      if (err) return console.log(err);
-      res.send(obj);
-    })
-  });
-
 });
 
 module.exports = router;

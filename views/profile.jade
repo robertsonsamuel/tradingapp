@@ -14,19 +14,20 @@ block content
         h3 Item's Owned
         .row
           #ownedItems
-            .row
-              #sampleItem.col-sm-6.col-md-6.hide.item.text-center
+            #sampleItem.col-sm-6.col-md-6.hide.item.text-center
+              .thumbnail
+                img(src='http://ep.yimg.com/ay/yhst-83547458988818/travelocity-gnome-mexico-16.jpg')
+                .caption Sample
+              button#cancel Cancel
+            each element in items
+              - var divClass = null
+              if (element.trade) 
+                - divClass = "disabled"
+              .col-sm-6.col-md-6.item.text-center(id="#{element._id}" class=divClass)
                 .thumbnail
                   img(src='http://ep.yimg.com/ay/yhst-83547458988818/travelocity-gnome-mexico-16.jpg')
-                  .caption Sample
-              each element in items
-                - var divClass = null
-                if (element.trade) 
-                  - divClass = "disabled"
-                .col-sm-6.col-md-6.item.text-center(id="#{element._id}" class=divClass)
-                  .thumbnail
-                      img(src='http://ep.yimg.com/ay/yhst-83547458988818/travelocity-gnome-mexico-16.jpg')
-                      .caption= element.name
+                  .caption= element.name
+                button#cancel Cancel
         br
         h3 Pending Transactions 
         .row
@@ -34,30 +35,18 @@ block content
             table.table.table-striped
               tbody#offerTable
                 tr
-                  th Your Item
-                  th Offer
+                  th Item 1
+                  th Item 2
                   th Accept
                   th Decline
-                  th Cancel
-                tr.hide.toClone
-                  td#currentItem 
-                  td#offer 
-                  td 
-                    button#acceptOffer Accept
-                  td 
-                    button#declineOffer Decline
-                  td#cancelTrans 
-                    button Cancel
                 each element in trans
                   tr(id="#{element._id}")
                     td#currentItem= element.forTrade.name
-                    td#offer= element.offered
+                    td#offer= element.offered.name
                     td 
                       button#acceptOffer Accept
                     td 
                       button#declineOffer Decline
-                    td#cancelTrans 
-                      button Cancel
 
   #itemModal.modal.fade(role="dialog")
       .modal-dialog.modal-lg

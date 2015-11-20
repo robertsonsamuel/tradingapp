@@ -4,7 +4,9 @@ $(document).ready(init);
 
 function init() {
   $('#addItem').click(addItem);
-  $('#ownedItems').on('click','.item',toTrade);
+  $('#ownedItems').on('click','.thumbnail',toTrade);
+  $('#ownedItems').on('click','#cancel',cancel);
+  $('#acceptOffer').click(acceptOffer);
 }
 
 function toTrade (e) {
@@ -18,18 +20,8 @@ function toTrade (e) {
       data:{_id: id}
     }).done(function (data){
       $(e.target).closest('.item').addClass('disabled');
-      addRow(data);
-
     });
   }
-}
-
-function addRow(transaction) {
-  console.log(transaction);
-  var trSample = $('.toClone').clone();
-  trSample.attr('id', transaction._id).removeClass('hide toClone');
-  trSample.children('#currentItem').text(transaction.forTrade.name);
-  $('#offerTable').append(trSample);
 }
 
 function addItem () {
@@ -49,4 +41,20 @@ function addItem () {
     $('#ownedItems').append($itemDisp);   
   });
   //inside done
+}
+
+function acceptOffer (e) {
+  var transId = $(e.target).closest('tr').attr('id');
+  console.log(transId);
+  $.post('/transaction/accept', {_id:transId}).done(function (data){
+    console.log(data);
+    window.location.reload();
+  })
+}
+
+function cancel (e) {
+  var id = $(e.target).closest('.item').attr('id');
+  $.post('/transaction/cancel', {_id:id}).done(function (data){
+    $(e.target).closest('.item').removeClass('disabled');
+  })
 }

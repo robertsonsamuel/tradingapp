@@ -10,12 +10,11 @@ block content
         .modal-body
           .form-group
             label.dropdownLabel(for="sel1") Currently Available Items:
-            button.addItem.btn.btn-success Offer
+            button.makeOffer.btn.btn-success Offer
             select(class="form-control" id="sel1")
               option Select One
-              option.default None Available Currently
-              option.basketball Basketball
-              option.baseball Baseball
+              each item in items
+                option(class="#{item._id}")= item.name
 
           
   .container
@@ -23,7 +22,7 @@ block content
     .jumbotron
       h1 Items for Trade!
     .allItems
-      each element in items
+      each element in trade
         .itemContainer(id="#{element._id}")
          h3.name= element.name
         

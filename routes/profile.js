@@ -57,6 +57,13 @@ router.post('/newitem' , function (req ,res) {
   });
 });
 
+router.post('/delete', function  (req, res) {
+  Item.findByIdAndRemove(req.body._id, function (err, item) {
+    if (err) console.log(err);
+    res.send();
+  })
+})
+
 router.put('/newtrade' , function (req ,res) {
   var userId = getUser(req);
   Item.findByIdAndUpdate(req.body._id, {trade:true}, function(err, olditem) {

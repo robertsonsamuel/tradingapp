@@ -8,6 +8,7 @@ function init() {
   $('#ownedItems').on('click','#cancel',cancel);
   $('#acceptOffer').click(acceptOffer);
   $('#declineOffer').click(decline);
+  $('#ownedItems').on('click','#remove',remove);
 }
 
 function toTrade (e) {
@@ -40,6 +41,9 @@ function addItem () {
       console.log(data);
     $itemDisp.attr('id', data);  
     $('#ownedItems').append($itemDisp);   
+    $('#ownedItems').on('click','.thumbnail',toTrade);
+    $('#ownedItems').on('click','#cancel',cancel);
+    $('#ownedItems').on('click','#remove',remove);
   });
   //inside done
 }
@@ -65,5 +69,12 @@ function decline (e){
   $.post('/transaction/decline', {_id:transId}).done(function (data){
     console.log(data);
     $(e.target).closest('tr').remove();
+  })
+}
+
+function remove (e){
+  var id = $(e.target).closest('.item').attr('id');
+  $.post('/profile/delete', {_id:id}).done(function (data){
+    $(e.target).closest('.item').remove();
   })
 }

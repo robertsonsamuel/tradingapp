@@ -14,20 +14,23 @@ block content
         h3 Item's Owned
         .row
           #ownedItems
-            #sampleItem.col-sm-6.col-md-6.hide.item.text-center
+            h5 Click the Item to Offer for Trade!
+            #sampleItem.col-sm-3.col-md-3.hide.item.text-center
               .thumbnail
                 img(src='http://hydra-media.cursecdn.com/minecraft-de.gamepedia.com/c/c9/Netherreaktorkern.png?version=95b085a0d60bffa2db6cf81299e561a2')
                 .caption Sample
-              button#cancel Cancel
+              button#cancel Cancel Offer
+              button#remove Remove Item
             each element in items
               - var divClass = null
               if (element.trade) 
                 - divClass = "disabled"
-              .col-sm-6.col-md-6.item.text-center(id="#{element._id}" class=divClass)
+              .col-sm-3.col-md-3.item.text-center(id="#{element._id}" class=divClass)
                 .thumbnail
                   img(src='http://hydra-media.cursecdn.com/minecraft-de.gamepedia.com/c/c9/Netherreaktorkern.png?version=95b085a0d60bffa2db6cf81299e561a2')
                   .caption= element.name
-                button#cancel Cancel
+                button#cancel Cancel Offer
+                button#remove Remove Item
         br
         h3 Pending Transactions 
         .row

@@ -1,3 +1,3 @@
-# Inventory Manager
+# Trading App
 
-Inventory Manager for items in the house. See it in action at https://whispering-headland-2166.herokuapp.com/
+Trading App for trading items. See it in action at https://protected-shore-2769.herokuapp.com/
